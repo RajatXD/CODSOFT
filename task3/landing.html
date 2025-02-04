@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photon Service Landing Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h2 {
+      color: #fc8686;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: rgba(18, 18, 18, 0.10);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #fc8686;
+      text-align: center;
+      flex: 1;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    header nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    header nav a {
+      margin: 0 15px;
+      color: #ffffff;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    header nav a:hover, header nav a:focus {
+      color: #fc8686;
+      transform: translateY(-3px);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 150px 20px;
+      background: url('landingpic.jpg') no-repeat center/cover;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+      animation: slideIn 1.5s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #b0b0b0;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #fc8686;
+      color: #121212;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: transform 0.3s, background-color 0.3s;
+      position: relative;
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+
+    .hero .cta:hover {
+      transform: scale(1.1);
+      background-color: #ef4f4f;
+    }
+
+    .services {
+      padding: 80px 20px;
+      background-color: #1a1a1a;
+      margin-bottom: 50px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .services h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .services ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .services li {
+      color: #b0b0b0;
+      margin: 10px 20px;
+      font-size: 1.3rem;
+      text-align: center;
+      flex: 1 1 200px;
+      padding: 20px;
+      background-color: #252525;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .services li:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 80px 20px;
+      background-color: #fc8686;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .cta-section a {
+      padding: 14px 28px;
+      background-color: #121212;
+      color: #ffffff;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .cta-section a:hover {
+      transform: scale(1.1);
+      background-color: #c52323;
+    }
+
+    .contact {
+      padding: 80px 20px;
+      background-color: #1a1a1a;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .contact p {
+      font-size: 1.2rem;
+      color: #b0b0b0;
+      margin-top: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .contact a {
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .contact a:hover {
+      color: #fc8686;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      color: #b0b0b0;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .social-links {
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      color: #fc8686;
+      font-size: 1.5rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-links a:hover, .social-links a:focus {
+      color: #e8e8e8;
+      transform: scale(1.2);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .services ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .services li {
+        margin: 10px 0;
+        text-align: center;
+      }
+
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Photon Service</h1>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#cta">Get Started</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Transform Your Business with Photon Service</h2>
+    <p>Providing innovative solutions to help your business grow and succeed.</p>
+    <a href="#cta" class="cta">Get Started</a>
+  </section>
+
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Web Development 🌐</li>
+      <li>UI/UX Design 🎨</li>
+      <li>Consulting 💼</li>
+      <li>Digital Marketing 📈</li>
+      <li>SEO Optimization 🔍</li>
+      <li>Branding 🏷️</li>
+    </ul>
+  </section>
+
+  <section id="cta" class="cta-section">
+    <h2>Ready to Take the Next Step?</h2>
+    <br>
+    <a href="#contact">Contact Us Now</a>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>If you are ready to embark on a journey towards transforming your business, we invite you to reach out to us. Our team of experts is here to provide you with detailed information and personalized assistance tailored to your unique needs. Let us help you achieve your business goals with our innovative solutions and dedicated support.</p>
+    <br>
+    <a href="mailto:info@example.com">Email Us</a>
+
+    <div class="social-links">
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Our Service. All rights reserved. ✨</p>
+  </footer>
+
+</body>
+</html>

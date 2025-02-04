@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h2 {
+      color: #bb86fc;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: rgba(18, 18, 18, 0.10);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #bb86fc;
+    }
+
+    header nav a {
+      margin: 0 15px;
+      color: #ffffff;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    header nav a:hover, header nav a:focus {
+      color: #bb86fc;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(135deg, #1e1e1e, #242126);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      position: relative;
+      animation: fadeIn 2s ease;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #b0b0b0;
+    }
+
+    .hero .cta {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #bb86fc;
+      color: #121212;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .hero .cta:hover {
+      transform: scale(1.1);
+      background-color: #9e4fef;
+    }
+
+    .section {
+      padding: 50px 20px;
+      background-color: #1a1a1a;
+      margin-bottom: 50px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .about img {
+      border-radius: 50%;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .about h2, .skills h2, .resume h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+    }
+
+    .about p {
+      font-size: 1.3rem;
+      color: #b0b0b0;
+      margin-top: 20px;
+    }
+
+    .skills ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .skills li {
+      color: #b0b0b0;
+      margin: 10px 20px;
+      font-size: 1.3rem;
+      text-align: center;
+      flex: 1 1 200px;
+    }
+
+    .resume {
+      text-align: center;
+    }
+
+    .resume a {
+      padding: 14px 28px;
+      background-color: #bb86fc;
+      color: #121212;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .resume a:hover {
+      transform: scale(1.1);
+      background-color: #9e4fef;
+    }
+
+    .projects {
+      padding: 50px 20px;
+      background-color: #1a1a1a;
+    }
+
+    .projects h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+    }
+
+    .projects .project-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .projects .project {
+      background-color: #1f1f1f;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .projects .project:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .projects .project:hover::after {
+      opacity: 0.2;
+    }
+
+    .projects .project h3 {
+      margin-bottom: 15px;
+      color: #bb86fc;
+    }
+
+    .projects .project p {
+      color: #b0b0b0;
+      margin-bottom: 20px;
+    }
+
+    .projects .project a {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #bb86fc;
+      color: #121212;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .contact {
+      padding: 50px 20px;
+      background-color: #1a1a1a;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .contact p {
+      font-size: 1.2rem;
+      color: #b0b0b0;
+      margin-top: 20px;
+    }
+
+    .contact a {
+      color: #bb86fc;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      color: #b0b0b0;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #bb86fc;
+      font-weight: bold;
+    }
+
+    .social-links {
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      margin: 0 10px;
+      color: #bb86fc;
+      font-size: 1.5rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-links a:hover, .social-links a:focus {
+      color: #ffffff;
+      transform: scale(1.2);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .projects .project-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .projects .project {
+        width: 90%;
+      }
+
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .about img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .skills li {
+        flex: 1 1 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Rajat's Portfolio ✨</h1>
+    <nav>
+      <a href="#about">About Me</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Hi, I'm Rajat 👋</h2>
+    <p>Web developer & design enthusiast. Let's create something amazing together! 💻✨</p>
+    <a href="#projects" class="cta">Explore My Work</a>
+  </section>
+
+  <section id="about" class="about section">
+    <img src="photo.png" alt="Rajat's Photo">
+    <h2>About Me</h2>
+    <p>Hi, I'm Rajat, a passionate web developer with a keen eye for design. I specialize in creating clean, modern, and user-friendly websites. With experience in both front-end and back-end development, I aim to deliver seamless digital experiences. 🌐💡</p>
+  </section>
+
+  <section id="skills" class="skills section">
+    <h2>My Skills 💪</h2>
+    <ul>
+      <li>HTML5, CSS3, JavaScript</li>
+      <li>React & Node.js</li>
+      <li>Responsive Design</li>
+      <li>Web Performance Optimization</li>
+      <li>Version Control (Git, GitHub)</li>
+      <li>UI/UX Design</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="projects section">
+    <h2>My Projects 🚀</h2>
+    <div class="project-list">
+      <div class="project">
+        <h3>Project One</h3>
+        <p>A cutting-edge application for task management.</p>
+        <a href="#">View Details</a>
+        <img src="pro1.jpg" alt="Project One" class="project-image">
+      </div>
+      <div class="project">
+        <h3>Project Two</h3>
+        <p>An innovative platform for remote collaboration.</p>
+        <a href="#">View Details</a>
+        <img src="pro2.jpg" alt="Project Two" class="project-image">
+      </div>
+      <div class="project">
+        <h3>Project Three</h3>
+        <p>A creative portfolio site for showcasing talents.</p>
+        <a href="#">View Details</a>
+        <img src="pro3.jpg" alt="Project Three" class="project-image">
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .project {
+      position: relative;
+    }
+
+    .project img.project-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 10px;
+    }
+
+    .project:hover img.project-image {
+      opacity: 0.3;
+    }
+  </style>
+
+  <section id="resume" class="resume section">
+    <h2>Download My Resume 📄</h2>
+    <a href="rajatresume.pdf" download>Download Resume</a>
+  </section>
+
+  <section id="contact" class="contact section">
+    <h2>Get In Touch 📞</h2>
+    <p>Feel free to reach out for collaborations, inquiries, or just to chat! 💬</p>
+    <a href="mailto:rajatgajinkar02@gmail.com">Email Me</a>
+
+    <div class="social-links">
+      <a href="https://github.com/RajatXD" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/rajat-gajinkar/" target="_blank">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Rajat. All rights reserved. ✨</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #a4a4a4;
+      font-family: Arial, sans-serif;
+    }
+
+    .calculator {
+      background-color: #0078d7;
+      border-radius: 15px;
+      width: 260px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .display {
+      background-color: #ffffff;
+      border-radius: 10px;
+      height: 60px;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-align: right;
+      padding: 10px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-weight: bold;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .number {
+      background-color: #005bb5;
+      color: white;
+      font-size: 1.5rem;
+      padding: 15px;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .number:hover {
+      background-color: #004494;
+    }
+
+    .number:active {
+      background-color: #00336e;
+    }
+
+    .operator {
+      background-color: #00336e;
+      color: white;
+      font-size: 1.5rem;
+      padding: 15px;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .operator:hover {
+      background-color: #004494;
+    }
+
+    .operator:active {
+      background-color: #00336e;
+    }
+
+    .equal {
+      grid-row: span 1.5;
+      background-color: #00336e;
+    }
+
+    .equal:hover {
+      background-color: #004494;
+    }
+
+    .equal:active {
+      background-color: #00336e;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <!-- used onclick event to call the functions and passed the values -->
+    <div class="buttons">
+      <div class="number" onclick="appendNumber(7)">7</div>
+      <div class="number" onclick="appendNumber(8)">8</div>
+      <div class="number" onclick="appendNumber(9)">9</div>
+      <div class="operator" onclick="setOperation('+')">+</div>
+      <div class="number" onclick="appendNumber(4)">4</div>
+      <div class="number" onclick="appendNumber(5)">5</div>
+      <div class="number" onclick="appendNumber(6)">6</div>
+      <div class="operator" onclick="setOperation('-')">-</div>
+      <div class="number" onclick="appendNumber(1)">1</div>
+      <div class="number" onclick="appendNumber(2)">2</div>
+      <div class="number" onclick="appendNumber(3)">3</div>
+
+      <div class="operator equal" onclick="calculate()">=</div>
+    </div>
+  </div>
+
+  <script>
+    let currentNumber = '';
+    let previousNumber = '';
+    let operation = null;
+    function appendNumber(number) {
+      if (currentNumber.length >= 9) return;
+      currentNumber += number;
+      updateDisplay();
+    }
+
+    function setOperation(op) {
+      if (currentNumber === '') return;
+      if (previousNumber !== '') calculate();
+      operation = op;
+      previousNumber = currentNumber;
+      currentNumber = '';
+    }
+
+    function calculate() {
+      if (operation === null || currentNumber === '') return;
+      const prev = parseFloat(previousNumber);
+      const current = parseFloat(currentNumber);
+      let result = 0;
+
+      if (operation === '+') result = prev + current;
+      if (operation === '-') result = prev - current;
+
+      currentNumber = result.toString();
+      operation = null;
+      previousNumber = '';
+      updateDisplay();
+    }
+    function updateDisplay() {
+      const display = document.getElementById('display');
+      display.textContent = currentNumber || '0';
+    }
+  </script>
+</body>
+</html>
